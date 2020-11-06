@@ -10,7 +10,14 @@
     tools:context=".MainActivity">
 
     <EditText
-        android:id="@+id/nameEt"
+        android:id="@+id/firstNameEt"
+        android:inputType="text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Name"
+        />
+    <EditText
+        android:id="@+id/lastNameEt"
         android:inputType="text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

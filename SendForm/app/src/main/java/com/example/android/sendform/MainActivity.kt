@@ -19,7 +19,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val nameEt = findViewById<EditText>(R.id.nameEt)
+        val firstNameEt = findViewById<EditText>(R.id.firstNameEt)
+        val lastNameEt = findViewById<EditText>(R.id.lastNameEt)
         val emailEt = findViewById<EditText>(R.id.emailEt)
         val phoneEt = findViewById<EditText>(R.id.phoneEt)
 
@@ -49,14 +50,16 @@ class MainActivity : AppCompatActivity() {
             val birthday = "$selectedDay/${selectedMonth + 1}/$selectedYear"
 
             // get text from edittexts
-            val name = nameEt.text.toString()
+            val firstName = firstNameEt.text.toString()
+            val lastName = lastNameEt.text.toString()
             val email = emailEt.text.toString()
             val phone = phoneEt.text.toString()
 
 
             // intent to start activity
             val intent = Intent(this@MainActivity, SecondActivity::class.java )
-            intent.putExtra("Name", name)
+            intent.putExtra("FirstName", firstName)
+            intent.putExtra("LastName", lastName)
             intent.putExtra("Email", email)
             intent.putExtra("Phone", phone)
             intent.putExtra("Birthday", birthday)

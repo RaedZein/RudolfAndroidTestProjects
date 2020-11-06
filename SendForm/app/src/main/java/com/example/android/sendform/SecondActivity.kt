@@ -11,7 +11,8 @@ class SecondActivity : AppCompatActivity() {
 
         // get data from intent
         var intent = intent
-        val name = intent.getStringExtra("Name")
+        val firstName = intent.getStringExtra("FirstName")
+        val lastName = intent.getStringExtra("LastName")
         val email = intent.getStringExtra("Email")
         val phone = intent.getStringExtra("Phone")
         val birthday = intent.getStringExtra("Birthday")
@@ -19,7 +20,7 @@ class SecondActivity : AppCompatActivity() {
         // textview
         val resultTv = findViewById<TextView>(R.id.resultTv)
         // set text
-        resultTv.text = "Name: $name\nEmail: $email\nBirthday: $birthday\nPhone: $phone"
+        resultTv.text = "First Name: $firstName\nLast Name: $lastName\nEmail: $email\nBirthday: $birthday\nPhone: $phone"
 
     }
 }
