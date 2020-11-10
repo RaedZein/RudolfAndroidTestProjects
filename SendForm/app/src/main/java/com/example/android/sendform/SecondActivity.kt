@@ -16,11 +16,11 @@ class SecondActivity : AppCompatActivity() {
         val email = intent.getStringExtra("Email")
         val phone = intent.getStringExtra("Phone")
         val birthday = intent.getStringExtra("Birthday")
+        val example = intent.getStringExtra("Example")
 
         // textview
         val resultTv = findViewById<TextView>(R.id.resultTv)
         // set text
-        resultTv.text = "First Name: $firstName\nLast Name: $lastName\nEmail: $email\nBirthday: $birthday\nPhone: $phone"
-
+        resultTv.text = "First Name: $firstName\nLast Name: $lastName\nEmail: $email\nBirthday: $birthday\nPhone: $phone\nExample: $example"
     }
 }
