@@ -1,26 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:cardElevation="8dp"
-    android:layout_margin="8dp"
-    >
-
-    <LinearLayout
-        android:orientation="vertical"
+    <androidx.cardview.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
+        android:layout_height="wrap_content"
+        app:cardElevation="8dp"
+        android:layout_margin="8dp"
+        >
         <LinearLayout
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/image_movie"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@mipmap/ic_launcher"/>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/image_movie"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@mipmap/ic_launcher"/>
 
                 <LinearLayout
                     android:orientation="vertical"
@@ -28,6 +30,8 @@
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
                     android:layout_marginLeft="8dp">
+
+
 
                     <TextView
                         android:id="@+id/userId"
@@ -49,8 +53,9 @@
 
                 </LinearLayout>
 
+            </LinearLayout>
+
         </LinearLayout>
 
-    </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
-</androidx.cardview.widget.CardView>
