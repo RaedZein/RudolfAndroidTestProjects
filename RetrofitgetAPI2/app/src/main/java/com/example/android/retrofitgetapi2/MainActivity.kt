@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Response
 
@@ -13,23 +14,34 @@ class MainActivity : AppCompatActivity() {
     // call adapter and linearlayoutmanager
     lateinit var myAdapter: MyAdapter
     lateinit var linearLayoutManager: LinearLayoutManager
-    lateinit var viewModel: MyDataViewModel
+    private lateinit var viewModel: MyDataViewModel
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         viewModel = MyDataViewModel()
-        viewModel.liveData.observe(this, Observer {
-            myAdapter = MyAdapter(baseContext, it)
-            myAdapter.notifyDataSetChanged()
-            recyclerview_users.adapter = myAdapter
-        })
+        if (viewModel.liveData.value != null) {
+            viewModel.liveData.observe(this, Observer {
+                myAdapter = MyAdapter(baseContext, it)
+                myAdapter.notifyDataSetChanged()
+                recyclerview_users.adapter = myAdapter
+            })
+        } else {
+            val view = recyclerview_users
+            val error = Failure().message
+            Snackbar.make(view, error, Snackbar.LENGTH_LONG)
+                        .show();
+
+        }
+
+
+
         // initialize adapter linearlayoutmanager
         recyclerview_users.setHasFixedSize(true)
         linearLayoutManager = LinearLayoutManager(this)
         recyclerview_users.layoutManager = linearLayoutManager
-
     }
 
 

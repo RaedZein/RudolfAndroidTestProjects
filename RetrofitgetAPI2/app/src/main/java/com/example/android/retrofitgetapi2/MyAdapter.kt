@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.row_items.view.*
 
-class MyAdapter(val context: Context, val userList: List<MyDataItem>) :
+class MyAdapter(val context: Context, val userList: List<MyResponse>) :
     RecyclerView.Adapter<MyAdapter.ViewHolder>() {
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var id: TextView
