@@ -1,10 +1,8 @@
 package com.example.android.retrofitgetapi2
 
 data class MyResponse(
-        val body: String,
-        val id: Int,
-        val title: String,
-        val userId: Int,
+        val failure: Failure? = null,
+        val success: ArrayList<MyDataItem>? = null
 )
 
 data class Failure(

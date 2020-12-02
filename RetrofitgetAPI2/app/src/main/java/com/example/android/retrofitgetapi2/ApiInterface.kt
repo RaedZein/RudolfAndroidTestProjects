@@ -15,7 +15,7 @@ private val retrofitBuilder = Retrofit.Builder()
 
 interface ApiInterface {
     @GET("posts")
-    fun getData() : Call<ArrayList<MyResponse>>
+    fun getData() : Call<ArrayList<MyDataItem>>
 }
 
 object UserApi {

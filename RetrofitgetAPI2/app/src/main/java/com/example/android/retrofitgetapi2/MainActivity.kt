@@ -22,21 +22,18 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         viewModel = MyDataViewModel()
-        if (viewModel.liveData.value != null) {
-            viewModel.liveData.observe(this, Observer {
-                myAdapter = MyAdapter(baseContext, it)
+        viewModel.liveData.observe(this, Observer {
+            if (it.success!=null) { //When api result is successful
+                myAdapter = MyAdapter(baseContext, it.success)
                 myAdapter.notifyDataSetChanged()
                 recyclerview_users.adapter = myAdapter
-            })
-        } else {
-            val view = recyclerview_users
-            val error = Failure().message
-            Snackbar.make(view, error, Snackbar.LENGTH_LONG)
-                        .show();
+            }else if (it.failure!=null) { // When api result is failed
+                val view = recyclerview_users
+                Snackbar.make(view, it.failure.message, Snackbar.LENGTH_LONG)
+                        .show()
+            }
 
-        }
-
-
+        })
 
         // initialize adapter linearlayoutmanager
         recyclerview_users.setHasFixedSize(true)

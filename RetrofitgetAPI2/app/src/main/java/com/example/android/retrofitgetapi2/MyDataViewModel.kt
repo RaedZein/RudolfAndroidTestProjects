@@ -13,18 +13,18 @@ import retrofit2.Response
 class MyDataViewModel: ViewModel() {
 
     // The internal MutableLiveData String that stores the most recent response
-    private val _liveData = MutableLiveData<ArrayList<MyResponse>>()
+    private val _liveData = MutableLiveData<MyResponse>()
 
     // The external immutable LiveData for the response String
-    val liveData: LiveData<ArrayList<MyResponse>>
+    val liveData: LiveData<MyResponse>
         get() = _liveData
-
-    // The internal MutableLiveData String that stores the most recent response
-    private val _onError = MutableLiveData<Failure>()
-
-    // The external immutable LiveData for the response String
-    val onError: LiveData<Failure>
-        get() = _onError
+//
+//    // The internal MutableLiveData String that stores the most recent response
+//    private val _onError = MutableLiveData<Failure>()
+//
+//    // The external immutable LiveData for the response String
+//    val onError: LiveData<Failure>
+//        get() = _onError
 
 
 
@@ -41,15 +41,14 @@ class MyDataViewModel: ViewModel() {
      */
     fun getUsersData() {
         UserApi.retrofitService.getData().enqueue(
-                object : Callback<ArrayList<MyResponse>> {
-                    override fun onResponse(call: Call<ArrayList<MyResponse>>, response: Response<ArrayList<MyResponse>>) {
-                        _liveData.value = response.body()
-
+                object : Callback<ArrayList<MyDataItem>> {
+                    override fun onResponse(call: Call<ArrayList<MyDataItem>>, response: Response<ArrayList<MyDataItem>>) {
+                        _liveData.value = MyResponse(success = response.body())
                     }
 
-                    override fun onFailure(call: Call<ArrayList<MyResponse>>, t: Throwable) {
-                        val errorMessage = onError.value
-                        Log.d("errorMessage", "this is errorMessage: " + {errorMessage})
+                    override fun onFailure(call: Call<ArrayList<MyDataItem>>, t: Throwable) {
+                        val errorMessage =t.message?:""
+                        _liveData.value = MyResponse(failure = Failure(errorMessage))
                     }
 
                 }
