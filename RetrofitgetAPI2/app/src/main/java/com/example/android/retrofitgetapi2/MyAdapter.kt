@@ -34,5 +34,4 @@ class MyAdapter(val context: Context, val userList: List<MyDataItem>) :
        return userList.size
     }
 
-
 }

@@ -1,7 +1,9 @@
 package com.example.android.retrofitgetapi2
 
+import android.app.Application
 import android.util.Log
 import android.widget.Toast
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -18,7 +20,7 @@ class MyDataViewModel: ViewModel() {
     // The external immutable LiveData for the response String
     val liveData: LiveData<MyResponse>
         get() = _liveData
-//
+
 //    // The internal MutableLiveData String that stores the most recent response
 //    private val _onError = MutableLiveData<Failure>()
 //
@@ -47,7 +49,7 @@ class MyDataViewModel: ViewModel() {
                     }
 
                     override fun onFailure(call: Call<ArrayList<MyDataItem>>, t: Throwable) {
-                        val errorMessage =t.message?:""
+                        val errorMessage = t.message?:""
                         _liveData.value = MyResponse(failure = Failure(errorMessage))
                     }
 

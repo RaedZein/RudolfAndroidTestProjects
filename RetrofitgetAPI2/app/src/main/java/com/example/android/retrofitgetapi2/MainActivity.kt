@@ -1,12 +1,12 @@
 package com.example.android.retrofitgetapi2
 
+import android.app.Application
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
-import retrofit2.Response
 
 
 class MainActivity : AppCompatActivity() {
