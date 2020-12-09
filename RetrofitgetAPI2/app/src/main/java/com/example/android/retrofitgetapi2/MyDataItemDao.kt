@@ -16,8 +16,8 @@ interface MyDataItemDao {
     fun get(key: Int): MyDataItem?
     @Query("DELETE FROM my_data_item")
     fun clear()
-    @Query("SELECT * FROM my_data_item ORDER BY userId DESC LIMIT 1")
+    @Query("SELECT * FROM my_data_item ORDER BY id DESC LIMIT 1")
     fun getOneDataItem(): MyDataItem?
-    @Query("SELECT * FROM my_data_item ORDER BY userId DESC")
+    @Query("SELECT * FROM my_data_item ORDER BY id DESC")
     fun getAllDataItems(): LiveData<List<MyDataItem>>
 }

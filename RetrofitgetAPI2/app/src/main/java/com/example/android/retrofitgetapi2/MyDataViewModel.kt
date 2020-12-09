@@ -7,12 +7,15 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.room.Room
 import com.google.android.material.snackbar.Snackbar
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MyDataViewModel: ViewModel() {
+class MyDataViewModel(application: Application): AndroidViewModel(application) {
+    val getAllDataItems: LiveData<List<MyDataItem>>
+    private val repository: MyDataItemRepository
 
     // The internal MutableLiveData String that stores the most recent response
     private val _liveData = MutableLiveData<MyResponse>()
@@ -34,8 +37,12 @@ class MyDataViewModel: ViewModel() {
      * Call getUserData() on init so we can display status immediately.
      */
     init {
-        Log.i("_response", "this is the response")
-        getUsersData()
+        val myDataItemDao = MyDataItemDatabase.getInstance(application).MyDataItemDao
+        repository = MyDataItemRepository(myDataItemDao)
+        getAllDataItems = repository.getAllDataItems
+//        Log.i("_response", "this is the response")
+//        getUsersData()
+
     }
 
     /**
@@ -57,5 +64,15 @@ class MyDataViewModel: ViewModel() {
         )
 
     }
+
+    fun insertRandomData() {
+        val thread = Thread {
+            var item1 = MyDataItem(0,"body 1", "title 1", 1)
+            repository.insert(item1)
+        }
+        thread.start()
+    }
+
+
 }
 

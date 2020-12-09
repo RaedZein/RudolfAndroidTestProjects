@@ -6,12 +6,12 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "my_data_item")
 data class MyDataItem(
-        @ColumnInfo(name = "body")
-        val body: String,
         @PrimaryKey(autoGenerate = true)
         val id: Int,
+        @ColumnInfo(name = "body")
+        val body: String,
         @ColumnInfo(name = "title")
-        val title: String,
+        var title: String,
         @ColumnInfo(name = "userId")
         val userId: Int
 )

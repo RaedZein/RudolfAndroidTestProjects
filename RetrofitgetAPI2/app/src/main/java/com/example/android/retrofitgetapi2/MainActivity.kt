@@ -4,7 +4,9 @@ import android.app.Application
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.room.Room
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -20,21 +22,23 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        myAdapter = MyAdapter(baseContext)
+        viewModel = ViewModelProvider(this).get(MyDataViewModel::class.java)
+        viewModel.getAllDataItems.observe(this, Observer { user ->
+            myAdapter.setData(user)
+            recyclerview_users.adapter = myAdapter
+//            if (it.success!=null) { //When api result is successful
+//                myAdapter.notifyDataSetChanged()
+//                recyclerview_users.adapter = myAdapter
+//            }else if (it.failure!=null) { // When api result is failed
+//                val view = recyclerview_users
+//                Snackbar.make(view, it.failure.message, Snackbar.LENGTH_LONG)
+//                        .show()
+//            }
 
-        viewModel = MyDataViewModel()
-        viewModel.liveData.observe(this, Observer {
-            if (it.success!=null) { //When api result is successful
-                myAdapter = MyAdapter(baseContext, it.success)
-                myAdapter.notifyDataSetChanged()
-                recyclerview_users.adapter = myAdapter
-            }else if (it.failure!=null) { // When api result is failed
-                val view = recyclerview_users
-                Snackbar.make(view, it.failure.message, Snackbar.LENGTH_LONG)
-                        .show()
-            }
 
         })
-
+        viewModel.insertRandomData()
         // initialize adapter linearlayoutmanager
         recyclerview_users.setHasFixedSize(true)
         linearLayoutManager = LinearLayoutManager(this)

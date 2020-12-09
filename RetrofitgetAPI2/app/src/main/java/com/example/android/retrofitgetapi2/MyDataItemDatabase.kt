@@ -23,6 +23,7 @@ abstract class MyDataItemDatabase: RoomDatabase() {
                         .fallbackToDestructiveMigration()
                         .build()
                     INSTANCE = instance
+
                 }
                 return instance
             }

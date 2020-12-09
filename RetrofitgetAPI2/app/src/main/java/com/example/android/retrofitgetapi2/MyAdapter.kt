@@ -8,8 +8,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.row_items.view.*
 
-class MyAdapter(val context: Context, val userList: List<MyDataItem>) :
+class MyAdapter(val context: Context) :
     RecyclerView.Adapter<MyAdapter.ViewHolder>() {
+
+    private var userList = emptyList<MyDataItem>()
+
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var id: TextView
         var title: TextView
@@ -32,6 +35,11 @@ class MyAdapter(val context: Context, val userList: List<MyDataItem>) :
 
     override fun getItemCount(): Int {
        return userList.size
+    }
+
+    fun setData(user: List<MyDataItem>) {
+        this.userList = user
+        notifyDataSetChanged()
     }
 
 }
